@@ -1,4 +1,4 @@
-#level {
+.level {
     text-align: center;
     width: 60px;
     height: 20px;
@@ -6,23 +6,23 @@
     background-color: transparent;
 }
 
-.levels {
+.level-container .levels {
     background-color: transparent;
     transition: background-color .3s;
 }
 
-.levels[name="weak"]:nth-child(2) {
+.level-container.weak .levels:nth-child(2) {
     background-color: rgb(255, 66, 66);
 }
 
-.levels[name="medium"]:nth-child(-n + 3) {
+.level-container.medium .levels:nth-child(-n + 3) {
     background-color: rgb(255, 217, 0);
 }
 
-.levels[name="strong"]:nth-child(-n + 4) {
+.level-container.strong .levels:nth-child(-n + 4) {
     background-color: rgb(66, 255, 66);
 }
 
-.levels[name="robust"] {
+.level-container.robust .levels {
     background-color: rgb(66, 66, 255);
 }

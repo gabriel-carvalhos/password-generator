@@ -1,68 +1,67 @@
-function changeLength() {
-    var value = document.getElementById('range').valueAsNumber
-    document.getElementById('res').innerText = value
-}
+const generate = document.querySelector('.btn-generate')
+const copy = document.querySelector('.copy')
+const range = document.querySelector('.range')
+const res = document.querySelector('.result > p')
+const check = document.querySelectorAll('.check > input[type="checkbox"]')
+const error = document.querySelector('.error')
+const levelContainer = document.querySelector('.level-container')
+const level = document.querySelector('.level')
+const elementLevels = document.querySelectorAll('.levels')
+const passwordLength = document.querySelector('.password-length')
 
-function generate() {
-    var check = document.querySelectorAll('.check > input[type="checkbox"]')
-    var charset = [
-        ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"],
-        ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","u","v","w","x","y","z"],
-        ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-        ["!", "@", "#", "$", "%"]
-    ]
-    var chars = []
-    var strenghtLevel = -1
-    for (let i = 0; i < check.length; i++) {
-        if (check[i].checked) {
-            for (let j = 0; j < charset[i].length; j++) {
-                chars.push(charset[i][j])
-            }
-            strenghtLevel++
-        }
+generate.addEventListener('click', () => {
+    const checked = [...check].filter(item => item.checked)
+    if (!checked.length) {
+        levelContainer.classList.remove(`${levelContainer.classList[1]}`) // improve this
+        error.classList.add('active')
+        return
     }
     
-    const errorClassList = document.getElementById('error').classList
-    var elementLevels = document.querySelectorAll('.levels')
-    var errorMsg = elementLevels[0].previousElementSibling
-    if (strenghtLevel == -1) {
-        for (let i = 0; i < elementLevels.length; i++) {
-            elementLevels[i].setAttribute('name', '')
-        }
-        errorMsg.innerText = 'none'
-        errorClassList.add('active')
-    } else {
-        errorClassList.remove('active')
-        strenght(strenghtLevel)
-        document.querySelector('.result > p').innerHTML = password(chars)
-    }
-}
+    error.classList.remove('active')
+    const charset = [
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        'abcdefghijklmnopqrstuvwxyz',
+        '0123456789',
+        '!@#$%&*'
+    ]
 
-function strenght(level) {
-    var levels = ["weak", "medium", "strong", "robust"]
-    document.querySelector('#level').innerText = levels[level]
-    var elementLevels = document.querySelectorAll('.levels')
-    for (let i = 0; i < elementLevels.length; i++) {
-        elementLevels[i].setAttribute('name', `${levels[level]}`)
+    const chars = charset.filter((item, i) => checked.includes(check[i])).reduce((acc, charType) => acc += charType, '')
+    const strenghtLevel = checked.length - 1
+
+    strenght(strenghtLevel)
+    res.innerHTML = password(chars)
+})
+
+range.addEventListener('change', () => {
+    let value = document.querySelector('.range').valueAsNumber
+    passwordLength.innerText = value
+})
+
+copy.addEventListener('click', () => {
+    navigator.clipboard.writeText(res.innerText)
+    res.classList.add('copied')
+    setTimeout(() => {
+        res.classList.remove('copied')
+    }, 1000)
+})
+
+function strenght(strenghtLevel) {
+    const levels = ["weak", "medium", "strong", "robust"]
+    level.innerText = levels[strenghtLevel]
+
+    // improve this
+    if (levelContainer.classList.length > 1) {
+        levelContainer.classList.replace(`${levelContainer.classList[1]}`, `${levels[strenghtLevel]}`)
+    } else {
+        levelContainer.classList.add(`${levels[strenghtLevel]}`)
     }
 }
 
 function password(chars) {
-    var password = ''
-    var length = Number(document.getElementById('res').innerText)
+    let password = ''
+    const length = Number(passwordLength.innerText)
     for (let i = 0; i < length; i++) {
         password += `${chars[parseInt(Math.random() * chars.length)]}`
-        if (i % 25 == 0 && i != 0) {
-            password += `<br>`
-        }
     }
     return password
-}
-
-function copy(p) {
-    navigator.clipboard.writeText(p.innerText)
-    p.id = 'copy'
-    setTimeout(() => {
-        p.id = ''
-    }, 1000)
 }

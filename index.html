@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,50 +11,51 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
-    <div class="container">
+
+    <main class="container">
         <h1>Password Generator</h1>
-        <div class="result">
+        <section class="result">
             <p>Generate..</p>
-            <span onclick="copy(this.previousElementSibling)" class="material-symbols-outlined">file_copy</span>
-        </div>
-        <div class="form">
+            <span class="copy material-symbols-outlined">file_copy</span>
+        </section>
+        <section class="form">
             <form>
-                <label for="range">Character Length <span id="res">50</span></label>
-                <input type="range" value="50" min="5" step="5" name="charLength" id="range" onchange="changeLength()">
+                <label class="length-container" for="range">Character Length <span class="password-length">50</span></label>
+                <input type="range" value="50" min="5" step="5" name="charLength" class="range" id="range">
                 <div class="checkbox">
                     <div class="check">
-                        <input type="checkbox" id="ch1">
-                        <label class="box" for="ch1">Include Uppercase Letters</label>
+                        <input type="checkbox" id="uppercase">
+                        <label class="box" for="uppercase">Include Uppercase Letters</label>
                     </div>
                     <div class="check">
-                        <input type="checkbox" id="ch2">
-                        <label class="box" for="ch2">Include Lowercase Letters</label>
+                        <input type="checkbox" id="lowercase">
+                        <label class="box" for="lowercase">Include Lowercase Letters</label>
                     </div>
                     <div class="check">
-                        <input type="checkbox" id="ch3">
-                        <label class="box" for="ch3">Include Numbers</label>
+                        <input type="checkbox" id="numbers">
+                        <label class="box" for="numbers">Include Numbers</label>
                     </div>
                     <div class="check">
-                        <input type="checkbox" id="ch4">
-                        <label class="box" for="ch4">Include Symbols</label>
+                        <input type="checkbox" id="symbols">
+                        <label class="box" for="symbols">Include Symbols</label>
                     </div>
-                    <p id="error">ERROR: please include any type of character.</p>
+                    <p class="error">ERROR: please include any type of character.</p>
                 </div>
                 <div class="strength">
                     <h2>Strength</h2>
-                    <span>
-                        <span id="level">none</span>
+                    <div class="level-container">
+                        <span class="level">None</span>
                         <span class="levels"></span>
                         <span class="levels"></span>
                         <span class="levels"></span>
                         <span class="levels"></span>
-                    </span>
+                    </div>
                 </div>
-                <button type="button" onclick="generate()">Generate <span class="material-symbols-outlined">arrow_forward</span></button>
+                <button class="btn-generate" type="button">Generate <span class="material-symbols-outlined">arrow_forward</span></button>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 
-    <script src="./js/script.js"></script>
+    <script type="module" src="./js/script.js"></script>
 </body>
 </html>
