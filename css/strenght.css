@@ -1,6 +1,6 @@
 .level {
     text-align: center;
-    width: 60px;
+    width: 70px;
     height: 20px;
     border: none;
     background-color: transparent;
@@ -11,18 +11,18 @@
     transition: background-color .3s;
 }
 
-.level-container.weak .levels:nth-child(2) {
+.level-container.fraca .levels:nth-child(2) {
     background-color: rgb(255, 66, 66);
 }
 
-.level-container.medium .levels:nth-child(-n + 3) {
+.level-container.média .levels:nth-child(-n + 3) {
     background-color: rgb(217, 191, 42);
 }
 
-.level-container.strong .levels:nth-child(-n + 4) {
+.level-container.forte .levels:nth-child(-n + 4) {
     background-color: rgb(40, 158, 40);
 }
 
-.level-container.robust .levels {
+.level-container.robusta .levels {
     background-color: rgb(66, 66, 255);
 }

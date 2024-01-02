@@ -13,45 +13,45 @@
 <body>
 
     <main class="container">
-        <h1>Password Generator</h1>
+        <h1>Gerador de Senha</h1>
         <section class="result">
-            <p>Generate..</p>
+            <p>Gerando..</p>
             <span class="copy material-symbols-outlined">file_copy</span>
         </section>
         <section class="form">
             <form>
-                <label class="length-container" for="range">Character Length <span class="password-length">50</span></label>
+                <label class="length-container" for="range">Comprimento da senha <span class="password-length">50</span></label>
                 <input type="range" value="50" min="5" step="5" name="charLength" class="range" id="range">
                 <div class="checkbox">
                     <div class="check">
                         <input type="checkbox" id="uppercase">
-                        <label class="box" for="uppercase">Include Uppercase Letters</label>
+                        <label class="box" for="uppercase">Inclua Letras Maiúsculas</label>
                     </div>
                     <div class="check">
                         <input type="checkbox" id="lowercase">
-                        <label class="box" for="lowercase">Include Lowercase Letters</label>
+                        <label class="box" for="lowercase">Inclua Letras Minúsculas</label>
                     </div>
                     <div class="check">
                         <input type="checkbox" id="numbers">
-                        <label class="box" for="numbers">Include Numbers</label>
+                        <label class="box" for="numbers">Inclua Números</label>
                     </div>
                     <div class="check">
                         <input type="checkbox" id="symbols">
-                        <label class="box" for="symbols">Include Symbols</label>
+                        <label class="box" for="symbols">Inclua Símbolos</label>
                     </div>
-                    <p class="error">ERROR: please include any type of character.</p>
+                    <p class="error">ERRO: por favor selecione um tipo de caractere.</p>
                 </div>
                 <div class="strength">
-                    <h2>Strength</h2>
+                    <h2>Força</h2>
                     <div class="level-container">
-                        <span class="level">None</span>
+                        <span class="level">Nenhum</span>
                         <span class="levels"></span>
                         <span class="levels"></span>
                         <span class="levels"></span>
                         <span class="levels"></span>
                     </div>
                 </div>
-                <button class="btn-generate" type="button">Generate <span class="material-symbols-outlined">arrow_forward</span></button>
+                <button class="btn-generate" type="button">Gerar <span class="material-symbols-outlined">arrow_forward</span></button>
             </form>
         </section>
     </main>

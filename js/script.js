@@ -50,9 +50,9 @@ copy.addEventListener('click', () => {
     }, 1000)
 })
 
-function strenght(strenghtLevel) {
-    const levels = ["weak", "medium", "strong", "robust"]
-    const strenghtName = levels[strenghtLevel] ?? 'none'
+const strenght = (strenghtLevel) => {
+    const levels = ["fraca", "média", "forte", "robusta"]
+    const strenghtName = levels[strenghtLevel] ?? 'nenhum'
     level.innerText = strenghtName
 
     // improve this
@@ -63,7 +63,7 @@ function strenght(strenghtLevel) {
     }
 }
 
-function password(chars) {
+const password = (chars) => {
     let password = ''
     const length = Number(passwordLength.innerText)
     for (let i = 0; i < length; i++) {
