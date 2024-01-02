@@ -59,7 +59,7 @@ body {
 }
 
 .result > p.copied::before {
-    content: 'Copied! ';
+    content: 'Copiado! ';
 }
 
 .form {
