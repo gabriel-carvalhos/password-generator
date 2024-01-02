@@ -10,13 +10,8 @@ const level = document.querySelector('.level')
 const passwordLength = document.querySelector('.password-length')
 
 generate.addEventListener('click', () => {
-    if (!checked?.length) {
-        levelContainer.classList.remove(`${levelContainer.classList[1]}`) // improve this
-        error.classList.add('active')
-        return
-    }
+    if (!validate()) return
     
-    error.classList.remove('active')
     const charset = [
         'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         'abcdefghijklmnopqrstuvwxyz',
@@ -35,6 +30,7 @@ check.forEach(item => {
     item.addEventListener('click', () => {
         checked = [...check].filter(item => item.checked)
         strenght(checked.length - 1)
+        validate()
     })
 })
 
@@ -49,6 +45,17 @@ copy.addEventListener('click', () => {
         res.classList.remove('copied')
     }, 1000)
 })
+
+const validate = () => {
+    if (!checked?.length) {
+        levelContainer.classList.remove(`${levelContainer.classList[1]}`) // improve this
+        error.classList.add('active')
+        return false
+    } else {
+        error.classList.remove('active')
+        return true
+    }
+}
 
 const strenght = (strenghtLevel) => {
     const levels = ["fraca", "média", "forte", "robusta"]
