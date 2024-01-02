@@ -3,15 +3,14 @@ const copy = document.querySelector('.copy')
 const range = document.querySelector('.range')
 const res = document.querySelector('.result > p')
 const check = document.querySelectorAll('.check > input[type="checkbox"]')
+let checked
 const error = document.querySelector('.error')
 const levelContainer = document.querySelector('.level-container')
 const level = document.querySelector('.level')
-const elementLevels = document.querySelectorAll('.levels')
 const passwordLength = document.querySelector('.password-length')
 
 generate.addEventListener('click', () => {
-    const checked = [...check].filter(item => item.checked)
-    if (!checked.length) {
+    if (!checked?.length) {
         levelContainer.classList.remove(`${levelContainer.classList[1]}`) // improve this
         error.classList.add('active')
         return
@@ -25,16 +24,22 @@ generate.addEventListener('click', () => {
         '!@#$%&*'
     ]
 
-    const chars = charset.filter((item, i) => checked.includes(check[i])).reduce((acc, charType) => acc += charType, '')
-    const strenghtLevel = checked.length - 1
-
-    strenght(strenghtLevel)
+    const chars = charset
+        .filter((item, i) => checked.includes(check[i]))   // filtrando do check apenas os que estao checados
+        .reduce((acc, charType) => acc += charType, '')    // reduzindo a string
+    
     res.innerHTML = password(chars)
 })
 
-range.addEventListener('change', () => {
-    let value = document.querySelector('.range').valueAsNumber
-    passwordLength.innerText = value
+check.forEach(item => {
+    item.addEventListener('click', () => {
+        checked = [...check].filter(item => item.checked)
+        strenght(checked.length - 1)
+    })
+})
+
+range.addEventListener('input', () => {
+    passwordLength.innerText = range.valueAsNumber
 })
 
 copy.addEventListener('click', () => {
@@ -47,13 +52,14 @@ copy.addEventListener('click', () => {
 
 function strenght(strenghtLevel) {
     const levels = ["weak", "medium", "strong", "robust"]
-    level.innerText = levels[strenghtLevel]
+    const strenghtName = levels[strenghtLevel] ?? 'none'
+    level.innerText = strenghtName
 
     // improve this
     if (levelContainer.classList.length > 1) {
-        levelContainer.classList.replace(`${levelContainer.classList[1]}`, `${levels[strenghtLevel]}`)
+        levelContainer.classList.replace(`${levelContainer.classList[1]}`, `${strenghtName}`)
     } else {
-        levelContainer.classList.add(`${levels[strenghtLevel]}`)
+        levelContainer.classList.add(`${strenghtName}`)
     }
 }
 

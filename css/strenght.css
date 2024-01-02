@@ -16,11 +16,11 @@
 }
 
 .level-container.medium .levels:nth-child(-n + 3) {
-    background-color: rgb(255, 217, 0);
+    background-color: rgb(217, 191, 42);
 }
 
 .level-container.strong .levels:nth-child(-n + 4) {
-    background-color: rgb(66, 255, 66);
+    background-color: rgb(40, 158, 40);
 }
 
 .level-container.robust .levels {
