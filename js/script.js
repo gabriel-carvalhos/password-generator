@@ -25,8 +25,8 @@ generate.addEventListener('click', () => {
     ]
 
     const chars = charset
-        .filter((item, i) => checked.includes(check[i]))   // filtrando do check apenas os que estao checados
-        .reduce((acc, charType) => acc += charType, '')    // reduzindo a string
+        .filter((item, i) => checked.includes(check[i]))
+        .reduce((acc, charType) => acc += charType, '')
     
     res.innerHTML = password(chars)
 })
